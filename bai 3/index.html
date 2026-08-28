@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Bài 3</title>
+    </head>
+    <body>
+        <!-- ol danh sách có thứ tự -->
+         <ol>
+            <li>c#</li>
+            <li>python</li>
+            <li>javaScirpt</li>
+         </ol>
+         <!-- ul thẻ không có kí tự  -->
+           <ul>
+            <li>c#</li>
+            <li>python</li>
+            <li>javaScirpt</li>
+         </ul>
+
+         <h1>form đăng kí </h1>
+         <form>
+             <div>
+                <b>Họ và tên</b><br>
+                <!-- nếu iput khong có type thì sẽ mặc định lsf text -->
+                 <!-- readonly chỉ đọc thôi kh đc nhập thông tin-->
+                  <input type="text" placeholder="họ và tên">
+             </div>
+             <div>
+                <b>năm sinh</b><br>
+                <input type="number" placeholder="năm sinh"
+             </div>
+             <div>
+                <b>mật khẩu</b><br>
+                <input type="password" placeholder="mật khẩu">
+             </div>
+             <div>
+                <b>giới thiệu về bản thân</b><br>
+                <!-- textarea nhập không giới hạn -->
+                <textarea>nhập thông tin.....</textarea>
+             </div>
+             <div>
+                <b>email</b><br>
+                <input type="email">
+             </div>
+              <div>
+                <!-- số đầu tiên:o
+                số thứ 2:3,9,8
+                8 số còn lại:o-9 -->
+                <b>số điện thoại</b><br>
+                <input type="tel" pattern="([o]{1}) ([3,9,8]{2}) ([0-9]{8})">
+             </div>
+             <div>
+                <b>giới tính</b><br>
+                <input type="radio" name="giới tính" value="nam">Nam <br>
+                <input type="radio" name="giới tính" value="nu">nu
+             </div>
+             <div>
+                <b>sở thích</b><br>
+                <input type="checkbox" name="sở thích" value="chơi game">chơi game <br>
+                <input type="checkbox" name="sở thích" value="nghe nhạc">nghe nhạc <br>
+                <input type="checkbox" name="sở thích" value="đá bóng">đá bóng<br>
+             </div>
+             <div>
+                <b>trình duyệt wed mà tôi thích</b><br>
+                <select name="browsers">
+                   <option value="internet">internet</option>
+                   <option value="chorme">chorme</option>
+                   <option value="coccoc">coccoc</option>
+                   <option value="safarri">safarri</option>
+                </select>
+                <!-- <input type="range" id="a" value="50">100                               -->
+             </div>
+             <div>
+                <input type="submit">
+                <button>Xác nhận</button>
+                <input type="reset">
+             </div>                        
+         </form>
+         <MARQUEE>
+            <img src="/ảnh/cr7.webp">
+         </MARQUEE>
+         <video witdh="560" height="315">
+           <source src="/ảnh/Môn Học.pdf và 1 trang nữa - Cá nhân 2 - Microsoft​ Edge 29_07_2026 8_11_51 SA.png" type="video">
+         </video>
+         <audio controls>
+            <source src="link" type="link">
+         </audio>
+         <iframe><iframe width="560" height="315" src="https://www.youtube.com/embed/Bhm2YXwiwnY?si=M_u9N8HLYr_l4coI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+    </body>
+</html>
