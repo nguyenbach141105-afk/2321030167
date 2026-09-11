@@ -16,7 +16,25 @@ h3 {
     color:red;
     background-color:blue;
  }
- 
-        .danh-sach-muc{
-         liststyle:null;
-        }
+.tin{
+   width: 95%;
+   height: 300px;
+   margin: 20px auto;
+   border: 1px solid #2fa4e7
+   border-radius: 10px;
+} 
+.tin-tren{
+   width: 95%
+   margin: auto;
+   border-bottom: 1px solid #2fa4e7
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+}
+h3{
+   margin:0;
+}
+.xem-tiep{
+   color:#2fa4e7
+   text-decoration:none;
+}
