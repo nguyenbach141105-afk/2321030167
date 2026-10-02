@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời khóa biểu</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #222;
+        }
+
+        .thu {
+            width: 100%;
+            max-width: 1500px;
+            min-width: 1100px;
+            margin: 8px auto;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header,
+        .footer {
+            display: grid;
+            grid-template-columns: 70px repeat(7, 1fr) 68px;
+            height: 38px;
+        }
+
+        .header > div,
+        .footer > div {
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 13px;
+            background: #fafafa;
+        }
+
+        .header .arrow,
+        .footer .arrow {
+            font-size: 22px;
+            color: #333;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            display: grid;
+            grid-template-columns: 70px repeat(7, 1fr) 68px;
+            height: 655px;
+        }
+
+        /* Cột tiết */
+        .periods {
+            display: grid;
+            grid-template-rows: repeat(13, 1fr);
+        }
+
+        .period {
+            background: #159bd7;
+            color: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        /* Các cột ngày */
+        .day {
+            position: relative;
+            border-right: 1px solid #ddd;
+            display: grid;
+            
+        }
+
+        .cell {
+            border-bottom: 1px solid #ddd;
+            min-height: 0;
+        }
+
+        /* ================= GIỜ ================= */
+
+        .times {
+            display: grid;
+            grid-template-rows: auto;
+        }
+
+        .time {
+            background: #159bd7;
+            color: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* ================= MÔN HỌC ================= */
+
+        .subject {
+            position: absolute;
+            left: 0;
+            background: #c9dcf8;
+            border: 1px solid #8db4e2;
+            padding: 7px 10px;
+            font-size: 12px;      
+            overflow: hidden;
+        }
+
+        .subject strong {
+            font-size: 12px;
+        }
+
+        .subject .info {
+            margin-top: 2px;
+        }
+
+        .subject .room {
+            margin-top: 2px;
+        }
+
+        .subject .teacher {
+            margin-top: 2px;
+        }
+
+        .subject .clock {
+            color: black;
+            margin-top: 5px;
+        }
+
+        .subject .line {
+            border-bottom: 1px solid #75a5d8;
+            margin-top: 5px;
+        }
+
+        /* Vị trí môn học */
+
+        .mon-english {
+           witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .tue-source {
+              witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .tue-gis {
+             witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .thu-spatial {
+              witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .thu-bigdata {
+             witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .fri-source {
+             witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .fri-english {
+            witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .fri-web1 {
+             witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        .fri-web2 {
+             witdh:10px;
+           height:max-content;
+           margin-top:300px;
+        }
+
+        /* Ô trống được chọn */
+        .selected {
+            position: absolute;
+            top: calc 10;
+            left: 3px;
+            right: 3px;
+            height: calc(1 * (100% / 13) - 8px);
+            border: 2px solid #222;
+            border-radius: 5px;
+           
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            height: 38px;
+        }
+
+        .footer > div {
+            border-top: 1px solid white;
+            border-bottom: none;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1150px) {
+            .schedule {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="thu">
+
+    <!-- ================= HEADER ================= -->
+    <div class="header">
+
+        <div class="arrow">←</div>
+
+        <div>Thứ 2 (14/09)</div>
+        <div>Thứ 3 (15/09)</div>
+        <div>Thứ 4 (16/09)</div>
+        <div>Thứ 5 (17/09)</div>
+        <div>Thứ 6 (18/09)</div>
+        <div>Thứ 7 (19/09)</div>
+        <div>Chủ Nhật (20/09)</div>
+
+        <div class="arrow">→</div>
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+    <div class="content">
+
+        <!-- CỘT TIẾT -->
+        <div class="periods">
+
+            <div class="period">Tiết 1</div>
+            <div class="period">Tiết 2</div>
+            <div class="period">Tiết 3</div>
+            <div class="period">Tiết 4</div>
+            <div class="period">Tiết 5</div>
+            <div class="period">Tiết 6</div>
+            <div class="period">Tiết 7</div>
+            <div class="period">Tiết 8</div>
+            <div class="period">Tiết 9</div>
+            <div class="period">Tiết 10</div>
+            <div class="period">Tiết 11</div>
+            <div class="period">Tiết 12</div>
+            <div class="period">Tiết 13</div>
+
+        </div>
+
+
+        <!-- ================= THỨ 2 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="subject mon-english">
+
+                <strong>
+                    Tiếng Anh ngành Địa tin học
+                    (7050357)
+                </strong>
+
+                <div class="info">
+                    Nhóm: MT
+                </div>
+
+                <div class="room">
+                    Phòng: -
+                </div>
+
+                <div class="teacher">
+                    GV: Trần Hồng Hạnh
+                </div>
+
+                <div class="clock">
+                    ◷ 13:30 → 17:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= THỨ 3 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <!-- Mã nguồn mở -->
+            <div class="subject tue-source">
+
+                <strong>
+                    Mã nguồn mở (7080111)
+                </strong>
+
+                <div>Nhóm: 01</div>
+                <div>Phòng: HNBG102-Giảng đường 102 khu B</div>
+                <div>GV: Ngô Hùng Long</div>
+
+                <div class="clock">
+                    ◷ 12:30 → 14:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <!-- Địa tin học ứng dụng -->
+            <div class="subject tue-gis">
+
+                <strong>
+                    Địa tin học ứng dụng trong tài nguyên môi trường
+                    (7050534)
+                </strong>
+
+                <div>Nhóm: 01</div>
+                <div>Phòng: HNAD402-D4-2</div>
+                <div>GV: Phạm Thị Lan</div>
+
+                <div class="clock">
+                    ◷ 17:30 → 20:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= THỨ 4 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+        </div>
+
+
+        <!-- ================= THỨ 5 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+
+            <!-- Phân tích dữ liệu địa không gian -->
+            <div class="subject thu-spatial">
+
+                <strong>
+                    Phân tích dữ liệu địa không gian
+                    (7050356)
+                </strong>
+
+                <div>Nhóm: 200</div>
+                <div>Phòng: HNA1-405-A1-405</div>
+                <div>GV: Trần Văn Anh</div>
+
+                <div class="clock">
+                    ◷ 06:45 → 09:35
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <!-- Dữ liệu lớn -->
+            <div class="subject thu-bigdata">
+
+                <strong>
+                    Dữ liệu lớn và ứng dụng
+                    (7080507)
+                </strong>
+
+                <div>Nhóm: 200</div>
+                <div>Phòng: HNAD302-D3-2</div>
+                <div>GV: Lê Hồng Anh</div>
+
+                <div class="clock">
+                    ◷ 12:30 → 15:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= THỨ 6 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+
+            <!-- Mã nguồn mở -->
+            <div class="subject fri-source">
+
+                <strong>
+                    Mã nguồn mở (7080111)
+                </strong>
+
+                <div>Nhóm: 01</div>
+                <div>Phòng: HNA1-502-A1-502</div>
+                <div>GV: Ngô Hùng Long</div>
+
+                <div class="clock">
+                    ◷ 06:45 → 08:35
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <!-- Tiếng Anh -->
+            <div class="subject fri-english">
+
+                <strong>
+                    Tiếng Anh 2 (7010602)
+                </strong>
+
+                <div>Nhóm: 165</div>
+                <div>Phòng: HNBG305-Giảng đường 305 khu B</div>
+                <div>GV: Nguyễn Thanh Bình</div>
+
+                <div class="clock">
+                    ◷ 12:30 → 15:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <!-- Web + BTL -->
+            <div class="subject fri-web1">
+
+                <strong>
+                    Phát triển ứng dụng Web + BTL
+                    (7080116)
+                </strong>
+
+                <div>Nhóm: 04</div>
+                <div>Phòng: HNAD402-D4-2</div>
+                <div>GV: Ngô Ngọc Anh</div>
+
+                <div class="clock">
+                    ◷ 16:30 → 18:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+
+            <div class="subject fri-web2">
+
+                <strong>
+                    Phát triển ứng dụng Web + BTL
+                    (7080116)
+                </strong>
+
+                <div>Nhóm: 04</div>
+                <div>Phòng: HNAD402-D4-2</div>
+                <div>GV: Ngô Ngọc Anh</div>
+
+                <div class="clock">
+                    ◷ 18:30 → 20:20
+                </div>
+
+                <div class="line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= THỨ 7 ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="selected"></div>
+
+        </div>
+
+
+        <!-- ================= CHỦ NHẬT ================= -->
+        <div class="day">
+
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+        </div>
+
+
+        <!-- ================= CỘT GIỜ ================= -->
+        <div class="times">
+
+            <div class="time">06:45</div>
+            <div class="time">07:45</div>
+            <div class="time">08:45</div>
+            <div class="time">09:45</div>
+            <div class="time">10:45</div>
+            <div class="time">12:30</div>
+            <div class="time">13:30</div>
+            <div class="time">14:30</div>
+            <div class="time">15:30</div>
+            <div class="time">16:30</div>
+            <div class="time">17:30</div>
+            <div class="time">18:30</div>
+            <div class="time">19:30</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+    <div class="footer">
+
+        <div class="arrow">←</div>
+
+        <div>Thứ 2 (14/09)</div>
+        <div>Thứ 3 (15/09)</div>
+        <div>Thứ 4 (16/09)</div>
+        <div>Thứ 5 (17/09)</div>
+        <div>Thứ 6 (18/09)</div>
+        <div>Thứ 7 (19/09)</div>
+        <div>Chủ Nhật (20/09)</div>
+
+        <div class="arrow">→</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
