@@ -141,7 +141,7 @@
          document.write("<br>");
         document.write(mangso.pop());
 
-        //push lấy ra số cuối cùng 
+        //push thêm 1 gtri vào cuối cùng 
         document.write("<br>");
         mangso.push(6);
         document.write(mangso.push(++mangso));
@@ -160,11 +160,13 @@
         document.write(sothunhat >= sothuhai );
 
         //&& so sánh và 
+        //true&true=true
+        //true&false=false
+        
          var c =10;
         var d =5.5;
         document.write("<br>");
         document.write((sothunhat > sothuhai)&& (c > d) );
-
         //||so sánh hoặc
         document.write("<br>");
         document.write((sothunhat > sothuhai) || (c < d) );
@@ -181,41 +183,70 @@
          if(diem<[4])
          {
             document.write("điểm F");
-         } 
-         if(diem>[4])
-         {
-           document.write("điểm qua");
+         };
+        
+        //object:var name ={}
+        var thongtinsinhvien ={
+          hoten: "Nguyen Gia Bach",
+          tuoi: 21,
+          gioitinh: true, //true:nam, false:nữ 
+          diachi: {
+            thanhpho:"Ha Noi",
+            phuong:"dong ngac",
+            duong:"co nhue",
+          }
+        };
+      
+        var phim ={
+          tenphim:"trai buon nguoi",
+          tacgia:"nguyengiabach",
+          thoigian:"36phut",
+          dienvien:{
+            dienvienchinh:[
+               "đỗ nhật hoàng","lê hạ anh","steven nguyễn",
+            ],                          
+            dienvienphu:[
+               "đỗ nhật hoàng","lê hạ anh","steven nguyễn",
+            ],                      
+          },
+          rapchieu:{
+            rap:"beta",
+            rap:"cgv",
+            rap:"aeon",
+          }
+        };
+
+         document.write("<br>");
+        document.write(phim.dienvien.dienvienchinh[2]);
+         //switch case
+         var d = new Date();
+         var theDay = d.getDay();
+         switch (theDay) {
+          case 5:
+            document.write("Finally Friday");
+            break;
+          case 6 :
+              document.write("Super Saturday");
+            break;
+          case 0:
+            document.write("Sleepy sunday");
+            break;
+          default:
+          document.write("i'm looking forword to this weekend");
+         };
+         var danhsachsinhvien = ["thuy","mai","tuan","thắng","thao"];
+         document.write("<br>xin chào"+danhsachsinhvien[0]);
+
+         for(var i=0;i< danhsachsinhvien.length;i++){
+          //  document.write(i+"<br>");
+          //  document.write(danhsachsinhvien[i]+"<br>");
+           if(danhsachsinhvien[i]=="thuy"){
+            document.write("xin chào thủy<br>");
+           }
+           else if(danhsachsinhvien[i]=="tuan"){
+            document.write("xin chào tuấn<br>");
+           }
          }
-
-         var diem1 = 1,2,3,4,5,6,7,8,9,10;
-         if(diem1 < 4){
-           document.write("<br>");  
-            document.write("điểm F");
-            
-            esle if(diem1=5){
-              document.write("<br>");  
-            document.write("điểm d");
-            }
-            
-         }
-
-
-
-
-
-
-
-
-
-         
-
-
-
-
-
-
-
-
      </script>
      <!-- external js -->
       <script src="script.js"></script>
